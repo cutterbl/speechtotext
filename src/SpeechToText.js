@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./SpeechToText.scss";
+import styles from "./SpeechToText.module.scss";
 
 export default function SpeechToText(props) {
-  return <h1>SpeechToText</h1>;
+  return <h1 className={styles.color}>SpeechToText</h1>;
 }
