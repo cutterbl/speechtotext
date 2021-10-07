@@ -1,0 +1,58 @@
+
+  #SpeechButton {
+    width: 50px;
+    height: 50px;
+    border: 1px solid teal;
+    border-radius: 50%;
+    background-color: teal;
+    -webkit-box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
+    -moz-box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
+    box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
+    position: absolute;
+    top: calc(100% - 60px);
+    left: calc(100% - 60px);
+    z-index: 1499;
+    opacity: 1;
+    -webkit-transition: all 1.0s ease-in-out;  
+    -moz-transition: all 1.0s ease-in-out;  
+    -o-transition: all 1.0s ease-in-out;  
+    -ms-transition: all 1.0s ease-in-out;  
+    transition: all 1.0s ease-in-out;  
+  }
+  
+  #SpeechButton i {
+    width: 10px;
+    height: 10px;
+    margin-left: 14px;
+    margin-top: 7px;
+  }
+  
+  #PulseRing {
+    display: none;
+    content: '';
+    width: 80px;
+    height: 80px;
+    border: 5px solid teal;
+    border-radius: 50%;
+    position: absolute;
+    animation: pulsate infinite 2s;
+    left: -20px;
+    top: -20px;
+  }
+  
+  @-webkit-keyframes pulsate {
+    0% {
+      -webkit-transform: scale(1, 1);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1.2, 1.2);
+      opacity: 0;
+    }
+  }
+  
+  #StartInput {
+      font-size: 2em;
+      color: tomato;
+  }
+  

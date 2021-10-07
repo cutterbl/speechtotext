@@ -1,4 +1,5 @@
 import "./App.css";
+import MicrophoneButton from "./MicrophoneButton";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           Git
         </a>
       </header>
+      <MicrophoneButton />
     </div>
   );
 }
