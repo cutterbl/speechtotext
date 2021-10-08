@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 import "./App.css";
-import MicrophoneButton from "./MicrophoneButton";
-=======
+import MicrophoneButton from "./components/MicrophoneButton";
 import "./App.scss";
->>>>>>> 27ad7eca0efad827778a398f6073c822c2129cee
 
 function App() {
   return (
