@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import SpeechToText from "../SpeechToText";
 
@@ -8,74 +8,85 @@ export default {
   component: SpeechToText,
 };
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <SpeechToText {...args} />;
-
-//export const Simple = Template.bind({});
-
-export const TextField = (args) => {
+export const TextField = () => {
   const [result, setResult] = useState("");
+  const sttRef = useRef();
+
+  const onReset = () => sttRef?.current?.reset?.();
+
   return (
-    <div style={{ width: 450 }}>
+    <div style={{ width: 450, display: "flex", flexDirection: "row", gap: 5 }}>
       <input
         type="text"
-        style={{ width: "100%" }}
         value={result}
+        style={{ flexGrow: 1 }}
         onChange={({ target: { value: newValue } }) => setResult(newValue)}
       />
-      <SpeechToText {...args} update={setResult} />
+      <SpeechToText update={setResult} ref={sttRef} />
+      <button type="button" onClick={onReset}>
+        Reset
+      </button>
     </div>
   );
 };
 TextField.storyName = "simple field output";
-TextField.argTypes = {
-  lang: {
-    component: "select",
-    options: ["en-us", "ru", "es"],
-    defaultValue: "en-us",
-  },
-};
 
-export const TextArea = (args) => {
+export const TextArea = () => {
   const [result, setResult] = useState("");
+  const sttRef = useRef();
+
+  const onReset = () => sttRef?.current?.reset?.();
+
   return (
-    <div style={{ width: 450 }}>
+    <div style={{ width: 450, display: "flex", flexDirection: "row", gap: 5 }}>
       <textarea
         value={result}
         onChange={({ target: { value: newValue } }) => setResult(newValue)}
-        style={{ width: "100%", height: 250 }}
+        style={{ flexGrow: 1, height: 250 }}
       ></textarea>
-      <SpeechToText {...args} update={setResult} />
+      <div style={{ textAlign: "center" }}>
+        <SpeechToText update={setResult} ref={sttRef} />
+        <br />
+        <button type="button" onClick={onReset} style={{ marginTop: 5 }}>
+          Reset
+        </button>
+      </div>
     </div>
   );
 };
 TextArea.storyName = "simple textarea output";
-TextArea.argTypes = {
-  lang: {
-    component: "select",
-    options: ["en-us", "ru", "es"],
-    defaultValue: "en-us",
-  },
-};
 
-export const Div = (args) => {
-  const [result, setResult] = useState("");
+function LangButton({ active, ...props }) {
   return (
-    <div style={{ width: 450 }}>
-      <div>{result}</div>
+    <button {...props}>{active ? "хватит говорить" : "начать говорить"}</button>
+  );
+}
 
-      <SpeechToText {...args} update={setResult} />
+export const Language = () => {
+  const [result, setResult] = useState("");
+  const sttRef = useRef();
+
+  const onReset = () => sttRef?.current?.reset?.();
+
+  return (
+    <div style={{ width: 450, display: "flex", flexDirection: "row", gap: 5 }}>
+      <div style={{ flexGrow: 1 }}>{result}</div>
+      <div style={{ textAlign: "center" }}>
+        <SpeechToText
+          lang="ru"
+          update={setResult}
+          ref={sttRef}
+          as={LangButton}
+        />
+        <br />
+        <button type="button" onClick={onReset} style={{ marginTop: 5 }}>
+          Сброс настроек
+        </button>
+      </div>
     </div>
   );
 };
-Div.storyName = "simple div output";
-Div.argTypes = {
-  lang: {
-    component: "select",
-    options: ["en-us", "ru", "es"],
-    defaultValue: "en-us",
-  },
-};
+Language.storyName = "other languages";
 
 /**
  * Different Provider

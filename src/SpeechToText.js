@@ -1,64 +1,67 @@
-import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMicrophoneAlt } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
+import MicrophoneButton from "./components/MicrophoneButton";
 
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-import "./SpeechToText.scss";
-import "./components/MicrophoneButton.css";
-
-export default function SpeechToText({ lang = navigator.language, update }) {
+function Component({
+  as = MicrophoneButton,
+  lang = navigator.language,
+  update,
+  innerRef,
+}) {
   const { transcript, resetTranscript } = useSpeechRecognition();
   const [isListening, setIsListening] = useState(false);
-  const microphoneRef = useRef(null);
 
-  useEffect(() => {
-    update(transcript);
-  }, [transcript, update]);
-
-  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-    return <div>Browser is not Support Speech Recognition.</div>;
-  }
-
-  const toggleRecording = () => {
-    if (!isListening) {
-      handleListing();
-    } else {
-      stopHandle();
-    }
-  };
-  const handleListing = () => {
+  function startListening() {
     setIsListening(true);
-    microphoneRef.current.classList.add("listening");
     SpeechRecognition.startListening({
       continuous: true,
       language: lang,
     });
-  };
-  const stopHandle = () => {
+  }
+
+  function stopListening() {
     setIsListening(false);
-    microphoneRef.current.classList.remove("listening");
     SpeechRecognition.stopListening();
-  };
-  const handleReset = () => {
-    stopHandle();
-    resetTranscript();
+  }
+
+  useEffect(() => {
+    if (innerRef) {
+      innerRef.current = {
+        reset: () => {
+          stopListening();
+          resetTranscript();
+        },
+      };
+    }
+  }, [innerRef, resetTranscript]);
+
+  useEffect(() => {
+    update((prev) => (transcript !== prev ? transcript : prev));
+  }, [transcript, update]);
+
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    console.warn("Browser is not Support Speech Recognition.");
+    return null;
+  }
+
+  const Trigger = as;
+
+  const toggleRecording = () => {
+    if (!isListening) {
+      startListening();
+    } else {
+      stopListening();
+    }
   };
 
-  return (
-    <div
-      className="MicrophoneButton"
-      ref={microphoneRef}
-      onClick={toggleRecording}
-    >
-      <div id="SpeechButton">
-        <div id="PulseRing"></div>
-        <div id="StartInput">
-          <FontAwesomeIcon icon={faMicrophoneAlt} />
-        </div>
-      </div>
-    </div>
-  );
+  return <Trigger onClick={toggleRecording} active={isListening} />;
 }
+
+const SpeechToText = React.forwardRef((props, ref) => (
+  <Component innerRef={ref} {...props} />
+));
+
+export default SpeechToText;

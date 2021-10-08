@@ -1,0 +1,61 @@
+@keyframes pulsate {
+  0% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2, 1.2);
+    opacity: 0;
+  }
+}
+
+.PulseRing {
+  display: none;
+  content: "";
+  width: 30px;
+  height: 30px;
+  border: 3px solid #ab230b;
+  border-radius: 50%;
+  position: absolute;
+  animation: pulsate infinite 2s;
+  left: -4px;
+  top: -4px;
+}
+
+.SpeechButton {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(145, 145, 145);
+  border: 1px solid rgb(99, 97, 97);
+  border-radius: 15px;
+  text-align: center;
+  z-index: 1499;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: rgb(94, 94, 94);
+  }
+
+  &.active {
+    border-color: #ab230b;
+    > .PulseRing {
+      display: block;
+    }
+    > .StartInput {
+      color: #ab230b;
+    }
+  }
+
+  /* i {
+    width: 10px;
+    height: 10px;
+    margin-left: 14px;
+    margin-top: 10px;
+  } */
+}
+
+.StartInput {
+  font-size: 1em;
+  color: white;
+}
