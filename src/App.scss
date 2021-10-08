@@ -66,6 +66,11 @@
   min-width: 0;
 }
 
+.input-box textarea {
+  height: 100px;
+  width: 220px;
+}
+
 .input-box span {
   display: flex;
   align-items: center;

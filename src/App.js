@@ -5,7 +5,7 @@ import SpeechToText from "./SpeechToText";
 function App() {
   return (
     <div className="App">
-      <SpeechToText />
+      
       <header className="App-header">
         <h1>Team Speechless Hackathon</h1>
         <a
@@ -20,14 +20,14 @@ function App() {
       <div className="input-box">
         <input placeholder="Some Form" type="text" autocomplete="off" />
         <span>
-          <MicrophoneButton />
+          <SpeechToText />
         </span>    
       </div>
 
       <div className="input-box">
         <textarea placeholder="Enter some text" type="text" autocomplete="off" />
         <span>
-          <MicrophoneButton />
+          <SpeechToText />
         </span>    
       </div>
     </div>

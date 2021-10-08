@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMicrophoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
 import "./SpeechToText.scss";
+import "./components/MicrophoneButton.css";
 
 export default function SpeechToText() {
   const { transcript, resetTranscript } = useSpeechRecognition();
@@ -15,6 +18,13 @@ export default function SpeechToText() {
     return <div>Browser is not Support Speech Recognition.</div>;
   }
 
+  const toggleRecording = () => {
+    if (!isListening) {
+      handleListing();
+    } else {
+      stopHandle();
+    }
+  };
   const handleListing = () => {
     setIsListening(true);
     microphoneRef.current.classList.add("listening");
@@ -33,33 +43,15 @@ export default function SpeechToText() {
   };
 
   return (
-    <div className="microphone-wrapper">
-      <div className="mircophone-container">
-        <div
-          className="microphone-icon-container"
-          ref={microphoneRef}
-          onClick={handleListing}
-        >
-          Start
-          {/*<img src={microPhoneIcon} className="microphone-icon" /> */}
-        </div>
-        <div className="microphone-status">
-          {isListening ? "Listening........." : "Click to start Listening"}
-        </div>
-        {isListening && (
-          <button className="microphone-stop btn" onClick={stopHandle}>
-            Stop
-          </button>
-        )}
+    <div className="MicrophoneButton" 
+        ref={microphoneRef}
+        onClick={toggleRecording}>
+      <div id="SpeechButton">
+          <div id="PulseRing"></div>
+          <div id="StartInput">
+              <FontAwesomeIcon icon={faMicrophoneAlt} />
+          </div>
       </div>
-      {transcript && (
-        <div className="microphone-result-container">
-          <div className="microphone-result-text">{transcript}</div>
-          <button className="microphone-reset btn" onClick={handleReset}>
-            Reset
-          </button>
-        </div>
-      )}
     </div>
   );
 }
