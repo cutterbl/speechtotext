@@ -1,11 +1,13 @@
-import MicrophoneButton from "./components/MicrophoneButton";
+import { useState } from "react";
 import "./App.scss";
 import SpeechToText from "./SpeechToText";
 
 function App() {
+  const [value1, setValue1] = useState("");
+  const [value2, setValue2] = useState("");
+
   return (
     <div className="App">
-      
       <header className="App-header">
         <h1>Team Speechless Hackathon</h1>
         <a
@@ -18,17 +20,27 @@ function App() {
         </a>
       </header>
       <div className="input-box">
-        <input placeholder="Some Form" type="text" autocomplete="off" />
+        <input
+          placeholder="Some Form"
+          type="text"
+          autocomplete="off"
+          value={value1}
+        />
         <span>
-          <SpeechToText />
-        </span>    
+          <SpeechToText update={setValue1} />
+        </span>
       </div>
 
       <div className="input-box">
-        <textarea placeholder="Enter some text" type="text" autocomplete="off" />
+        <textarea
+          placeholder="Enter some text"
+          type="text"
+          autocomplete="off"
+          value={value2}
+        />
         <span>
-          <SpeechToText />
-        </span>    
+          <SpeechToText update={setValue2} />
+        </span>
       </div>
     </div>
   );
