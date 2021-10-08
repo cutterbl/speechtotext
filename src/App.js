@@ -1,4 +1,3 @@
-import "./App.css";
 import MicrophoneButton from "./components/MicrophoneButton";
 import "./App.scss";
 
@@ -16,7 +15,19 @@ function App() {
           Git
         </a>
       </header>
-      <MicrophoneButton />
+      <div className="input-box">
+        <input placeholder="Some Form" type="text" autocomplete="off" />
+        <span>
+          <MicrophoneButton />
+        </span>    
+      </div>
+
+      <div className="input-box">
+        <textarea placeholder="Enter some text" type="text" autocomplete="off" />
+        <span>
+          <MicrophoneButton />
+        </span>    
+      </div>
     </div>
   );
 }

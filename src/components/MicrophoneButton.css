@@ -1,30 +1,27 @@
 
   #SpeechButton {
-    width: 50px;
-    height: 50px;
-    border: 1px solid teal;
-    border-radius: 50%;
-    background-color: teal;
-    -webkit-box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
-    -moz-box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
-    box-shadow: -2px 5px 12px -6px rgba(92,92,92,1);
-    position: absolute;
-    top: calc(100% - 60px);
-    left: calc(100% - 60px);
+    width: 30px;
+    height: 38px;
+    background-color: rgb(145, 145, 145);
+    position: relative;
     z-index: 1499;
     opacity: 1;
-    -webkit-transition: all 1.0s ease-in-out;  
-    -moz-transition: all 1.0s ease-in-out;  
-    -o-transition: all 1.0s ease-in-out;  
-    -ms-transition: all 1.0s ease-in-out;  
-    transition: all 1.0s ease-in-out;  
+    -webkit-transition: all .5s ease-in-out;  
+    -moz-transition: all .5s ease-in-out;  
+    -o-transition: all .5s ease-in-out;  
+    -ms-transition: all .5s ease-in-out;  
+    transition: all .5s ease-in-out;  
   }
   
+  #SpeechButton:hover {
+    background-color: rgb(94, 94, 94)
+  }
+
   #SpeechButton i {
     width: 10px;
     height: 10px;
     margin-left: 14px;
-    margin-top: 7px;
+    margin-top: 10px;
   }
   
   #PulseRing {
@@ -52,7 +49,8 @@
   }
   
   #StartInput {
-      font-size: 2em;
-      color: tomato;
+      font-size: 1em;
+      color: rgb(126, 20, 1);
+      padding-top: 5px;
   }
   
