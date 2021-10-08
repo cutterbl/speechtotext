@@ -1,10 +1,11 @@
-import "./App.css";
 import MicrophoneButton from "./components/MicrophoneButton";
 import "./App.scss";
+import SpeechToText from "./SpeechToText";
 
 function App() {
   return (
     <div className="App">
+      <SpeechToText />
       <header className="App-header">
         <h1>Team Speechless Hackathon</h1>
         <a

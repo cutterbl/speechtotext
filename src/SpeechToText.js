@@ -4,7 +4,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-import styles from "./SpeechToText.module.scss";
+import "./SpeechToText.scss";
 
 export default function SpeechToText() {
   const { transcript, resetTranscript } = useSpeechRecognition();
@@ -33,34 +33,29 @@ export default function SpeechToText() {
   };
 
   return (
-    <div className={styles.microphoneWrapper}>
-      <div className={styles.mircophoneContainer}>
+    <div className="microphone-wrapper">
+      <div className="mircophone-container">
         <div
-          className={styles.microphoneIconContainer}
+          className="microphone-icon-container"
           ref={microphoneRef}
           onClick={handleListing}
         >
-          <button>START</button>
+          Start
+          {/*<img src={microPhoneIcon} className="microphone-icon" /> */}
         </div>
-        <div className={styles.microphoneStatus}>
+        <div className="microphone-status">
           {isListening ? "Listening........." : "Click to start Listening"}
         </div>
         {isListening && (
-          <button
-            className={styles.microphoneStop + " btn"}
-            onClick={stopHandle}
-          >
+          <button className="microphone-stop btn" onClick={stopHandle}>
             Stop
           </button>
         )}
       </div>
       {transcript && (
-        <div className={styles.microphoneResultContainer}>
-          <div className={styles.microphoneResultText}>{transcript}</div>
-          <button
-            className={styles.microphoneReset + " btn"}
-            onClick={handleReset}
-          >
+        <div className="microphone-result-container">
+          <div className="microphone-result-text">{transcript}</div>
+          <button className="microphone-reset btn" onClick={handleReset}>
             Reset
           </button>
         </div>
