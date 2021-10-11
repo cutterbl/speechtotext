@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import MicrophoneButton from "./components/MicrophoneButton";
 
 import SpeechRecognition, {
@@ -63,5 +64,11 @@ function Component({
 const SpeechToText = React.forwardRef((props, ref) => (
   <Component innerRef={ref} {...props} />
 ));
+
+SpeechToText.propTypes = {
+  as: PropTypes.func,
+  lang: PropTypes.string,
+  update: PropTypes.func.isRequired,
+};
 
 export default SpeechToText;
