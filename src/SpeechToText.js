@@ -39,7 +39,7 @@ function Component({
   }, [innerRef, resetTranscript]);
 
   useEffect(() => {
-    update((prev) => (transcript !== prev ? transcript : prev));
+    update(transcript);
   }, [transcript, update]);
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
