@@ -29,7 +29,7 @@ const controlRef = useRef();
 
 const onUpdate = (newValue) => setValue((prev) => (newValue !== prev ? newValue : prev));
 const onChange = ({ target: { value: newValue } }) => onUpdate(newValue);
-const onReset = () => sttRef?.current?.reset?.();
+const onReset = () => controlRef?.current?.reset?.();
 
 return (
   <div>
